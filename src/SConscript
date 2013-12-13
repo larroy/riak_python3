@@ -1,0 +1,13 @@
+Import('pyenv', 'env')
+import os
+from site_scons import SCutils
+
+#pyenv.SharedObject(target='unicode_wrap.os', source='unicode_wrap.cc')
+#pyenv.SharedObject(target='WordNorm.os', source='WordNorm.cc')
+
+for src in SCutils.RGlob(['*.cpp'], Dir('.')):
+    print src
+
+shobjs = []
+
+riak3_lib = pyenv.SharedLibrary (target='riak3', source=[shobjs])
