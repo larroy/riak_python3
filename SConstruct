@@ -42,9 +42,17 @@ ccflags = [
     '-Werror',
 ]
 
-cxxflags = []
-linkflags = []
-cpppath = []
+cxxflags = [
+    '-std=c++11',
+    '-Wnon-virtual-dtor'
+
+]
+linkflags = [
+    '-rdynamic'
+]
+cpppath = [
+    Dir('src/cpp')
+]
 libs = []
 libpath = []
 
@@ -130,7 +138,8 @@ if (GetOption('ccache')  and GetOption('ccache') == 'yes') or (SCutils.which('cc
 
 BOOST_PYTHON_INC = '/usr/include/python2.7'
 BOOST_PYTHON_LIB = 'boost_python'
-pyenv = env.Clone(CPPDEFINES=['EXPORT_PYTHON_INTERFACE'], CPPPATH=[BOOST_PYTHON_INC], SHLIBPREFIX='', LIBS=[BOOST_PYTHON_LIB])
+pyenv = env.Clone()
+pyenv.Append(CPPDEFINES=['EXPORT_PYTHON_INTERFACE'], CPPPATH=[BOOST_PYTHON_INC], SHLIBPREFIX='', LIBS=[BOOST_PYTHON_LIB])
 
 SConscript('src/SConscript', exports=['env', 'pyenv'], variant_dir = 'build', duplicate=0)
 

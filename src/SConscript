@@ -5,9 +5,13 @@ from site_scons import SCutils
 #pyenv.SharedObject(target='unicode_wrap.os', source='unicode_wrap.cc')
 #pyenv.SharedObject(target='WordNorm.os', source='WordNorm.cc')
 
-for src in SCutils.RGlob(['*.cpp'], Dir('.')):
-    print src
-
 shobjs = []
+for src in SCutils.RGlob(['*.cpp'], Dir('cpp')):
+    shobjs.append(env.SharedObject(src))
 
-riak3_lib = pyenv.SharedLibrary (target='riak3', source=[shobjs])
+
+
+riak3_lib = pyenv.SharedLibrary(target='riak3', source=[shobjs])
+
+shobjs.append(pyenv.SharedObject(File('python_bindings.cpp')))
+py_riak3_lib = pyenv.SharedLibrary(target='py_riak3', source=[shobjs])
