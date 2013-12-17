@@ -3,7 +3,7 @@
 
 /* Define if boost/shared_ptr is present. */
 #define HAVE_BOOST_SHARED_PTR 1
-#define HAVE_STD_SHARED_PTR
+#define HAVE_STD_SHARED_PTR 1
 #define RIAKC_USE_STD_SHARED_PTR 1
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
