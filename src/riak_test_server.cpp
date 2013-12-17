@@ -1,7 +1,7 @@
 #include "boost/asio.hpp"
 //#include "connection.hpp"
-#include "src/cxx/pbc_operations.hpp"
-#include "src/cxx/pbc_header.hpp"
+#include "riak_client_src/cxx/pbc_operations.hpp"
+#include "riak_client_src/cxx/pbc_header.hpp"
 #include <riak_client/cxx/error.hpp>
 #include <map>
 
