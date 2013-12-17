@@ -136,7 +136,9 @@ if (GetOption('ccache')  and GetOption('ccache') == 'yes') or (SCutils.which('cc
 
 
 
-BOOST_PYTHON_INC = '/usr/include/python2.7'
+BOOST_PYTHON_INC = Dir('/usr/include/python3.3m')
+
+
 BOOST_PYTHON_LIB = 'boost_python'
 pyenv = env.Clone()
 pyenv.Append(CPPDEFINES=['EXPORT_PYTHON_INTERFACE'], CPPPATH=[BOOST_PYTHON_INC], SHLIBPREFIX='', LIBS=[BOOST_PYTHON_LIB])

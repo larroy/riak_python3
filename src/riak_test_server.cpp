@@ -3,7 +3,6 @@
 #include "src/cxx/pbc_operations.hpp"
 #include "src/cxx/pbc_header.hpp"
 #include <riak_client/cxx/error.hpp>
-#include "utils/exception_intercept.h"
 #include <map>
 
 
@@ -273,7 +272,6 @@ void server_loop(short port)
 
 int main(int argc, char* argv[])
 {
-    display_stack_trace_disable();
     try
     {
         if (argc != 2)

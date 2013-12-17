@@ -1,4 +1,4 @@
-Import('pyenv', 'env')
+Import('env', 'pyenv')
 import os
 from site_scons import SCutils
 
@@ -6,12 +6,19 @@ from site_scons import SCutils
 #pyenv.SharedObject(target='WordNorm.os', source='WordNorm.cc')
 
 shobjs = []
-for src in SCutils.RGlob(['*.cpp'], Dir('cpp')):
+sources = SCutils.RGlob(['*.cpp', '*.cc'], Dir('cpp'))
+for src in sources:
+    #print(src)
     shobjs.append(env.SharedObject(src))
 
-
-
-riak3_lib = pyenv.SharedLibrary(target='riak3', source=[shobjs])
+riak3_lib = env.SharedLibrary(target='riak3', source=[shobjs])
 
 shobjs.append(pyenv.SharedObject(File('python_bindings.cpp')))
 py_riak3_lib = pyenv.SharedLibrary(target='py_riak3', source=[shobjs])
+
+riak_test_server_env = env.Clone()
+riak_test_server_env.Append(LIBS = [
+    'boost_system',
+    'protobuf'
+])
+riak_test_server = riak_test_server_env.Program('riak_test_server', source = ['riak_test_server.cpp', riak3_lib])
