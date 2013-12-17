@@ -51,7 +51,7 @@ linkflags = [
     '-rdynamic'
 ]
 cpppath = [
-    Dir('src/cpp')
+    Dir('src/')
 ]
 libs = []
 libpath = []

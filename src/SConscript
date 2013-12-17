@@ -6,7 +6,8 @@ from site_scons import SCutils
 #pyenv.SharedObject(target='WordNorm.os', source='WordNorm.cc')
 
 shobjs = []
-sources = SCutils.RGlob(['*.cpp', '*.cc'], Dir('cpp'))
+sources = SCutils.RGlob(['*.cpp', '*.cc'], Dir('riak_client'))
+sources.extend(SCutils.RGlob(['*.cpp', '*.cc'], Dir('riak_client_src')))
 for src in sources:
     #print(src)
     shobjs.append(env.SharedObject(src))
