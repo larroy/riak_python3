@@ -1,2 +1,17 @@
+
+Build system:
+- Install targets
+
+
+Packaging:
+- Debian package
+
+
+riak::easy::Client:
+- Implement missing functions and expose to python
+
+
+C++ refactoring:
+
 - remove the useless template in some riak classes
 - remove needing shared_ptr for things that could be passed as a reference

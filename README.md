@@ -17,3 +17,12 @@ Other targets:
 
 scons test
 scons --help
+
+
+Example of use:
+
+>>> c = riak3k.Client("localhost", "8086")
+>>> c.put("omg", "lala", "yes")
+>>> c.fetch_value("omg", "lala")
+'yes'
+
