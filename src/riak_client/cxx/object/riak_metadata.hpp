@@ -40,6 +40,7 @@ public:
     /// Construct a an empty metadata object.
     explicit riak_metadata();
 
+
     /// Construct a metadata object from user metadata.
     ///
     /// @param usermeta:  User-defined metadata.

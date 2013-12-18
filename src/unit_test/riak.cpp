@@ -97,7 +97,7 @@ struct RiakTextFixture
 };
 
 const std::string RiakTextFixture::s_port = "8086";
-const std::string RiakTextFixture::s_host = "localhost";
+const std::string RiakTextFixture::s_host = "127.0.0.1"; // avoid using localhost as it might fail depending on resolver and interface status in Linux
 
 #ifdef DEBUG
 const std::string RiakTextFixture::s_riak_test_server_bin = "build/debug/riak_test_server";
@@ -216,6 +216,28 @@ BOOST_AUTO_TEST_CASE(test_easy1)
 {
     riak::easy::Client client(RiakTextFixture::s_host, RiakTextFixture::s_port);
 }
+
+BOOST_AUTO_TEST_CASE(test_easy2)
+{
+    riak::easy::Client client(RiakTextFixture::s_host, RiakTextFixture::s_port);
+    string bucket = "test_easy2";
+    string key = "key";
+    string value = "value";
+    BOOST_CHECK_EQUAL("", client.fetch_value(bucket, key));
+}
+
+
+BOOST_AUTO_TEST_CASE(test_easy3)
+{
+    riak::easy::Client client(RiakTextFixture::s_host, RiakTextFixture::s_port);
+    string bucket = "test_easy3";
+    string key = "key";
+    string value = "value";
+    client.put(bucket, key, value);
+    BOOST_CHECK_EQUAL(value, client.fetch_value(bucket, key));
+}
+
+
 
 // TODO
 #if 0
