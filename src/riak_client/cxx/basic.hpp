@@ -14,16 +14,12 @@
  limitations under the License.
  */
 
-#ifndef RIAKCXX_BASIC_HPP_
-#define RIAKCXX_BASIC_HPP_
+#pragma once
 
 #include <riak_client/cxx/riak_client_fwd.hpp>
 #include <riak_client/cxx/basic/basic_client.hpp>
 #include <riak_client/cxx/basic/bucket_properties.hpp>
 #include <riak_client/cxx/basic/riak_result.hpp>
-#include <riak_client/cxx/basic/quorum.hpp>
 #include <riak_client/cxx/basic/response.hpp>
 #include <riak_client/cxx/basic/server_info.hpp>
 #include <riak_client/cxx/basic/store_params.hpp>
-
-#endif // include guard

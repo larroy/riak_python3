@@ -14,10 +14,8 @@
  limitations under the License.
  */
 
-#ifndef RIAKCXX_STORE_PARAMS_HPP_
-#define RIAKCXX_STORE_PARAMS_HPP_
+#pragma once
 
-#include <riak_client/cxx/basic/quorum.hpp>
 
 namespace riak {
 
@@ -36,26 +34,25 @@ public:
     store_params()
         : w_(DEFAULT), dw_(DEFAULT), pw_(DEFAULT), return_body_(false) { }
 public: // accessors
-    quora w() const { return w_; }
-    quora dw() const { return dw_; }
-    quora pw() const { return pw_; }
+    uint32_t w() const { return w_; }
+    uint32_t dw() const { return dw_; }
+    uint32_t pw() const { return pw_; }
     bool return_body() const { return return_body_; }
 public: // mutators
-    store_params& w(quora w) { w_ = w; return *this;}
-    store_params& dw(quora dw) { dw_ = dw; return *this;}
-    store_params& pw(quora pw) { pw_ = pw; return *this; }
+    store_params& w(uint32_t w) { w_ = w; return *this;}
+    store_params& dw(uint32_t dw) { dw_ = dw; return *this;}
+    store_params& pw(uint32_t pw) { pw_ = pw; return *this; }
     store_params& return_body(bool returnbody)
     {
         return_body_ = returnbody;
         return *this;
     }
 private: // intentionally copyable
-    quora w_;
-    quora dw_;
-    quora pw_;
+    uint32_t w_;
+    uint32_t dw_;
+    uint32_t pw_;
     bool return_body_;
 };
 
 } // ::riak
 
-#endif // include guard
