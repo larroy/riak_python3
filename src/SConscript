@@ -36,3 +36,4 @@ unit_test_env.Append(LIBS = [
 ])
 
 unit_test_main = unit_test_env.Program('test', source = [ut_objs, riak3_lib])
+Depends(unit_test_main, riak_test_server)

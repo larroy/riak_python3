@@ -148,7 +148,7 @@ unit_test_env = env.Clone()
 unit_test_env.Append(LIBS=['boost_unit_test_framework'])
 
 
-SConscript('src/SConscript', exports=['env', 'pyenv', 'unit_test_env'], variant_dir = 'build/{}'.format(build), duplicate=0)
+binaries = SConscript('src/SConscript', exports=['env', 'pyenv', 'unit_test_env'], variant_dir = 'build/{}'.format(build), duplicate=0)
 
 # Tests
 t = Alias('test', 'build/{}/test'.format(build), 'build/{}/test'.format(build))
