@@ -17,8 +17,7 @@
  limitations under the License.
  */
 
-#ifndef RIAKCXX_BUCKET_PROPERTIES_HPP_
-#define RIAKCXX_BUCKET_PROPERTIES_HPP_
+#pragma once
 
 #include <riak_client/cxx/riak_client_fwd.hpp>
 
@@ -31,12 +30,12 @@ class RIAKC_API bucket_properties
 {
 public:
     bucket_properties()
-        : allow_mult_(false), n_val_(-1) { }
+        : m_allow_mult(false), m_n_val(-1) { }
 
     /// Return the value of the <dfn>allow_mult</dfn> bucket property.
     bool allow_mult() const
     {
-        return allow_mult_;
+        return m_allow_mult;
     }
 
     /// Return the <dfn>n-val</dfn> bucket property.
@@ -44,25 +43,24 @@ public:
     /// The n-value is the replication factor of a bucket.
     int n_val() const
     {
-        return n_val_;
+        return m_n_val;
     }
 
     /// Set the <dfn>allow_mult</dfn> bucket property.
     void allow_mult(bool allow)
     {
-        allow_mult_ = allow;
+        m_allow_mult = allow;
     }
 
     /// Set the <dfn>n_val</dfn> bucket property.
     void n_val(int n)
     {
-        n_val_ = n;
+        m_n_val = n;
     }
 private:
-    bool allow_mult_;
-    int n_val_;
+    bool m_allow_mult;
+    int m_n_val;
 };
 
 } // :: riak
 
-#endif // include guard
