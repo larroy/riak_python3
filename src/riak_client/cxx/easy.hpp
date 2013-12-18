@@ -22,16 +22,9 @@ namespace riak
 namespace easy
 {
 
-class Object
-{
-    std::string get_key();
-    std::string get_bucket();
-    riak_metadata get_metadata();
-
-};
-
 class Client
 {
+public:
     Client(const std::string& host, const std::string& port);
     ~Client();
 
@@ -44,8 +37,8 @@ class Client
     void put(const std::string& bucket, const std::string& key, const std::string& value);
     void put_params(const std::string& bucket, const std::string& key, const std::string& value, int w, int dw);
 
-    response<result_ptr> get(const std::string& bucket, const std::string& key, int r)
-    std::string get_value(const std::string& bucket, const std::string& key, int r)
+    response<result_ptr> get(const std::string& bucket, const std::string& key, int r);
+    std::string get_value(const std::string& bucket, const std::string& key, int r);
     void set_bucket_properties(const std::string& bucket, const bucket_properties& prop);
 
 

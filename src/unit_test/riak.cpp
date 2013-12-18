@@ -2,6 +2,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include "riak_client/cxx/riak_client.hpp"
+#include "riak_client/cxx/easy.hpp"
 
 
 #include <sys/types.h>
@@ -91,10 +92,12 @@ struct RiakTextFixture
 
     int m_pid;
     static const std::string s_port;
+    static const std::string s_host;
     static const std::string s_riak_test_server_bin;
 };
 
 const std::string RiakTextFixture::s_port = "8086";
+const std::string RiakTextFixture::s_host = "localhost";
 
 #ifdef DEBUG
 const std::string RiakTextFixture::s_riak_test_server_bin = "build/debug/riak_test_server";
@@ -208,6 +211,11 @@ BOOST_AUTO_TEST_CASE (test_client)
     BOOST_REQUIRE(value == "bar");
 }
 
+
+BOOST_AUTO_TEST_CASE(test_easy1)
+{
+    riak::easy::Client client(RiakTextFixture::s_host, RiakTextFixture::s_port);
+}
 
 // TODO
 #if 0
