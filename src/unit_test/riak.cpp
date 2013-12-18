@@ -239,6 +239,20 @@ BOOST_AUTO_TEST_CASE(test_easy3)
 
 
 
+BOOST_AUTO_TEST_CASE(test_easy4)
+{
+    riak::easy::Client client(RiakTextFixture::s_host, RiakTextFixture::s_port);
+    string bucket = "test_easy3";
+    string key = "key";
+    string value = "value2";
+    client.put(bucket, key, value);
+    BOOST_CHECK_EQUAL(value, client.fetch_value(bucket, key));
+}
+
+
+
+
+
 // TODO
 #if 0
 BOOST_AUTO_TEST_CASE (test_client2)
