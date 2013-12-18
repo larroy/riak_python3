@@ -137,12 +137,14 @@ if (GetOption('ccache')  and GetOption('ccache') == 'yes') or (SCutils.which('cc
 
 
 
-BOOST_PYTHON_INC = Dir('/usr/include/python3.3m')
+#BOOST_PYTHON_INC = Dir('/usr/include/python3.3m')
 
 
-BOOST_PYTHON_LIB = 'boost_python'
-pyenv = env.Clone()
-pyenv.Append(CPPDEFINES=['EXPORT_PYTHON_INTERFACE'], CPPPATH=[BOOST_PYTHON_INC], SHLIBPREFIX='', LIBS=[BOOST_PYTHON_LIB])
+BOOST_PYTHON_LIB = 'boost_python-py33'
+pyenv = env.Clone(SHLIBPREFIX='')
+#pyenv.Append(CPPDEFINES=['EXPORT_PYTHON_INTERFACE'], CPPPATH=[BOOST_PYTHON_INC], SHLIBPREFIX='', LIBS=[BOOST_PYTHON_LIB])
+pyenv.Append(CPPDEFINES=['EXPORT_PYTHON_INTERFACE'], LIBS=[BOOST_PYTHON_LIB])
+pyenv.ParseConfig('pkg-config --cflags --libs python-3.3')
 
 unit_test_env = env.Clone()
 unit_test_env.Append(LIBS=['boost_unit_test_framework'])
@@ -153,5 +155,5 @@ binaries = SConscript('src/SConscript', exports=['env', 'pyenv', 'unit_test_env'
 # Tests
 t = Alias('test', 'build/{}/test'.format(build), 'build/{}/test'.format(build))
 AlwaysBuild(t)
-Default(t)
+#Default(t)
 

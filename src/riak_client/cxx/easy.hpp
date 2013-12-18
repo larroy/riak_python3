@@ -45,7 +45,7 @@ public:
     //string_vector list_buckets();
     //string_vector list_keys(const std::string& bucket);
     void put(const std::string& bucket, const std::string& key, const std::string& value);
-    void put_params(const std::string& bucket, const std::string& key, const std::string& value, int w, int dw);
+    //void put_params(const std::string& bucket, const std::string& key, const std::string& value, int w, int dw);
 
     //response<result_ptr> fetch(const std::string& bucket, const std::string& key, int r);
     std::string fetch_value(const std::string& bucket, const std::string& key);

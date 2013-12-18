@@ -1,23 +1,14 @@
 #include <boost/python.hpp>
-#include "riak_client/cxx/riak_client.hpp"
+#include "riak_client/cxx/easy.hpp"
 using namespace boost::python;
 
+using namespace riak::easy;
 
-class RiakClient
+BOOST_PYTHON_MODULE_INIT(riak3k)
 {
-public:
-    RiakClient(const std::string& host, const std::string& port):
-        m_cli(riak::new_client(host, port))
-    {
-        
-    }
-
-private:
-    riak::client_ptr m_cli;
-};
-
-BOOST_PYTHON_MODULE_INIT(riak3)
-{
-
+    class_<Client>("Client", "Riak Client class", init<std::string, std::string>())
+        .def("put", &Client::put)
+        .def("fetch_value", &Client::fetch_value)
+    ;
 }
 

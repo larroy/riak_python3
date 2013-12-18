@@ -15,7 +15,7 @@ for src in sources:
 riak3_lib = env.SharedLibrary(target='riak3', source=[shobjs])
 
 shobjs.append(pyenv.SharedObject(File('python_bindings.cpp')))
-py_riak3_lib = pyenv.SharedLibrary(target='py_riak3', source=[shobjs])
+py_riak3_lib = pyenv.SharedLibrary(target='riak3k', source=[shobjs])
 
 riak_test_server_env = env.Clone()
 riak_test_server_env.Append(LIBS = [
