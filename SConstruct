@@ -89,6 +89,7 @@ if not build:
 # DEBUG
 #
 if build == 'debug':
+    cppdefines.append('DEBUG')
     ccflags.extend([
         '-O0',
         '-ggdb2'
@@ -143,5 +144,14 @@ BOOST_PYTHON_LIB = 'boost_python'
 pyenv = env.Clone()
 pyenv.Append(CPPDEFINES=['EXPORT_PYTHON_INTERFACE'], CPPPATH=[BOOST_PYTHON_INC], SHLIBPREFIX='', LIBS=[BOOST_PYTHON_LIB])
 
-SConscript('src/SConscript', exports=['env', 'pyenv'], variant_dir = 'build', duplicate=0)
+unit_test_env = env.Clone()
+unit_test_env.Append(LIBS=['boost_unit_test_framework'])
+
+
+SConscript('src/SConscript', exports=['env', 'pyenv', 'unit_test_env'], variant_dir = 'build/{}'.format(build), duplicate=0)
+
+# Tests
+t = Alias('test', 'build/{}/test'.format(build), 'build/{}/test'.format(build))
+AlwaysBuild(t)
+Default(t)
 

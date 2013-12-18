@@ -1,4 +1,4 @@
-Import('env', 'pyenv')
+Import('env', 'pyenv', 'unit_test_env')
 import os
 from site_scons import SCutils
 
@@ -23,3 +23,16 @@ riak_test_server_env.Append(LIBS = [
     'protobuf'
 ])
 riak_test_server = riak_test_server_env.Program('riak_test_server', source = ['riak_test_server.cpp', riak3_lib])
+
+
+ut_source = SCutils.RGlob(['*.cpp'], Dir('unit_test'))
+ut_objs = []
+for src in ut_source:
+    ut_objs.append(unit_test_env.Object(src))
+
+unit_test_env.Append(LIBS = [
+    'boost_system',
+    'protobuf'
+])
+
+unit_test_main = unit_test_env.Program('test', source = [ut_objs, riak3_lib])

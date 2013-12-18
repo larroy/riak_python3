@@ -1,9 +1,6 @@
 // http://www.boost.org/doc/libs/1_47_0/libs/test/doc/html/utf/testing-tools/reference.html
 
-#include "common/includes/all.h"
-
 #include <boost/test/unit_test.hpp>
-#include "utils/utils.h"
 #include "riak_client/cxx/riak_client.hpp"
 
 
@@ -13,6 +10,35 @@
 
 
 using namespace std;
+
+
+namespace std
+{
+template<typename T, typename... Args>
+std::unique_ptr<T> make_unique(Args&&... args)
+{
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
+}
+
+/// Formatted string, allows to use stream operators and returns a std::string with the resulting format
+#define fs(a) \
+   (static_cast<const std::ostringstream&>(((*make_unique<std::ostringstream>().get()) << a)).str ())
+
+
+namespace
+{
+int err_sys(std::string s)
+{
+    std::string err;
+    char *err_str = std::strerror(errno);
+    if (err_str)
+        err = s + " error: " + std::strerror(errno)  + "\n";
+    else
+        err = s + " error: unknown (strerror returned NULL)\n";
+    throw std::runtime_error(err);
+}
+}
 
 /**
  * @author larroy
@@ -52,7 +78,8 @@ struct RiakTextFixture
     ~RiakTextFixture()
     {
         cout << "Sending SIGTERM to riak test server pid: " << m_pid << " ..." << flush;
-        ERR_CHECK(kill(m_pid, SIGTERM), "kill: " << m_pid);
+        if (kill(m_pid, SIGTERM))
+            err_sys(fs("kill" << m_pid << " failed"));
         int status = 0;
         if( waitpid(m_pid, &status, 0) < 0 )
         {
