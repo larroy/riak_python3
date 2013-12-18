@@ -139,6 +139,8 @@ if (GetOption('ccache')  and GetOption('ccache') == 'yes') or (SCutils.which('cc
 
 #BOOST_PYTHON_INC = Dir('/usr/include/python3.3m')
 
+env.ParseConfig('pkg-config --cflags --libs protobuf')
+env.Append(LIBS = [ 'boost_system'])
 
 BOOST_PYTHON_LIB = 'boost_python-py33'
 pyenv = env.Clone(SHLIBPREFIX='')

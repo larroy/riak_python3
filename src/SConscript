@@ -18,10 +18,6 @@ shobjs.append(pyenv.SharedObject(File('python_bindings.cpp')))
 py_riak3_lib = pyenv.SharedLibrary(target='riak3k', source=[shobjs])
 
 riak_test_server_env = env.Clone()
-riak_test_server_env.Append(LIBS = [
-    'boost_system',
-    'protobuf'
-])
 riak_test_server = riak_test_server_env.Program('riak_test_server', source = ['riak_test_server.cpp', riak3_lib])
 
 
@@ -30,10 +26,6 @@ ut_objs = []
 for src in ut_source:
     ut_objs.append(unit_test_env.Object(src))
 
-unit_test_env.Append(LIBS = [
-    'boost_system',
-    'protobuf'
-])
 
 unit_test_main = unit_test_env.Program('test', source = [ut_objs, riak3_lib])
 Depends(unit_test_main, riak_test_server)
