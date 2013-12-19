@@ -35,6 +35,19 @@ class Clean_cmd(distutils.cmd.Command):
         pbs.scons('-c')
 
 
+class Check_cmd(distutils.cmd.Command):
+    user_options = []
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        pbs.scons('test')
+
+
+
 
 setup(name = 'riak3k',
       packages = ['riak3k'],
@@ -42,7 +55,8 @@ setup(name = 'riak3k',
       package_dir = {'': 'build/release'},
       cmdclass = {
         'build_py': Build_py_cmd,
-        'clean': Clean_cmd
+        'clean': Clean_cmd,
+        'check': Check_cmd
       },
       ext_package = 'riak3k',
       version = '0.1',
