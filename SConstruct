@@ -83,7 +83,7 @@ for k, v in ARGLIST:
 #
 build = GetOption('build')
 if not build:
-    build = 'debug'
+    build = 'release'
 
 #
 # DEBUG

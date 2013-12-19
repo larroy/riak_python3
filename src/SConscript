@@ -29,3 +29,4 @@ for src in ut_source:
 
 unit_test_main = unit_test_env.Program('test', source = [ut_objs, riak3_lib])
 Depends(unit_test_main, riak_test_server)
+pyenv.Install('#build/lib', py_riak3_lib)

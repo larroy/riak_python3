@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 from distutils.core import setup
-from distutils.command.build_py import build_py as _build_py
+#from distutils.command.build_py import build_py as _build_py
+import distutils.cmd
 from site_scons import pbs
 
 from sys import version_info
@@ -11,14 +12,38 @@ from sys import version_info
 assert (version_info[0] >= 3), ('This requires Python 3')
 
 
-class build_py(_build_py):
-    print("Calling SCons to build the module")
-    pbs.scons()
+class Build_py_cmd(distutils.cmd.Command):
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        print("Calling SCons to build the module")
+        pbs.scons()
+
+class Clean_cmd(distutils.cmd.Command):
+    user_options = []
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        pbs.scons('-c')
+
+
 
 setup(name = 'riak3k',
       packages = ['riak3k'],
+      py_modules = ['build/release/riak3k.so'],
       package_dir = {'': 'build/release'},
-      cmdclass = {'build_py': build_py},
+      cmdclass = {
+        'build_py': Build_py_cmd,
+        'clean': Clean_cmd
+      },
       ext_package = 'riak3k',
       version = '0.1',
       description = 'Riak module for python3',
