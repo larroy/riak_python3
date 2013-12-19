@@ -2,9 +2,6 @@ Import('env', 'pyenv', 'unit_test_env')
 import os
 from site_scons import SCutils
 
-#pyenv.SharedObject(target='unicode_wrap.os', source='unicode_wrap.cc')
-#pyenv.SharedObject(target='WordNorm.os', source='WordNorm.cc')
-
 shobjs = []
 sources = SCutils.RGlob(['*.cpp', '*.cc'], Dir('riak_client'))
 sources.extend(SCutils.RGlob(['*.cpp', '*.cc'], Dir('riak_client_src')))
