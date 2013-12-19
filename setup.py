@@ -27,4 +27,14 @@ setup(name = 'riak3k',
       license = 'Apache License 2.0',
       keywords = 'riak python3',
       url='https://github.com/larroy/riak_python3',
+      classifiers = [
+        'Development Status :: 2 - Pre-Alpha',
+        'Intended Audience :: Developers',
+        'Operating System :: MacOS :: MacOS X',
+        'Operating System :: Microsoft :: Windows',
+        'Operating System :: POSIX',
+        'Topic :: System :: Networking',
+        'Topic :: Database',
+        'Topic :: Internet'
+      ]
 )
