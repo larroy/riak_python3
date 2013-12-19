@@ -1,17 +1,26 @@
 riak_python3
 ============
 
-A native riak python3 client
+This repository provides the following software:
+
+- A native Riak module for Python 
+- An easy C++ library for Riak (see src/riak_client/cxx/easy.hpp) 
 
 
-scons --build=release
+Depends on: SCons, protobuf, boost-python
 
-or
 
-scons --build=debug
+To build the python module:
+
+    python3 setup.py build
+
+
+
+To get a debug build:
+
+    scons --build=debug
 
 Creates binary targets in build/..
-
 
 Other targets:
 
